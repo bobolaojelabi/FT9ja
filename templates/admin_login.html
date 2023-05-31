@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin -Login</title>
+    <link href="{{url_for('static',filename='bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+      <!--  CSS File -->
+  <link href="{{url_for('static',filename='style.css')}}" rel="stylesheet">
+</head>
+<body>
+    <div class="container centered-form">
+        <form method="post" action="">
+        <div class="p-5 shadow-lg mb-5 bg-body rounded justify-content-center">
+            <div class="row mb-3">
+                <label for="Email" class="col-sm-3 col-form-label">Email:</label>
+                <div class="col-sm-9">
+                  <input type="email" class="form-control" id="Email" name="email">
+                </div>
+              </div>
+              <div class="row mb-5">
+                <label for="Password" class="col-sm-3 col-form-label">Password:</label>
+                <div class="col-sm-9">
+                  <input type="password" class="form-control" id="Password" name="password">
+                </div>
+              </div>
+              <button class="btn btn-outline-primary col-5 ms-5">Login</button>
+        </div>
+        </form>
+    </div>
+    
+    <script src="{{url_for('static',filename='bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+</body>
+</html>

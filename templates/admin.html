@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link href="{{url_for('static',filename='bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static',filename='bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet" type="text/css">
+      <!--  CSS File -->
+  <link href="{{url_for('static',filename='style.css')}}" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid">
+
+              <!-- ======= Header ======= -->
+        <header id="header" class="header fixed-top d-flex align-items-center justify-content-between px-4">
+
+            <div class="d-flex align-items-center justify-content-between">
+                <a href="/admin" class="logo me-5 fw-bolder fs-3">Admin</a>
+                <i class="bi bi-list sidebar-btn fs-2 mx-5"></i>
+            </div>
+
+            <div>
+                <a href="/admin/signout/" class="btn btn-primary">Sign out</a>
+            </div>
+
+        </header><!-- End Header -->
+
+        <!-- ======= Sidebar ======= -->
+        <aside id="sidebar" class="sidebar">
+
+            <ul class="sidebar-nav" id="sidebar-nav">
+        
+                <li class="nav-item mb-3">
+                    <a class="nav-link " href="/admin/">
+                    <i class="bi bi-grid"></i>
+                    <span class="fs-4 fw-bold">Dashboard</span>
+                    </a>
+                </li>
+
+            </ul>
+        
+        </aside><!-- End Sidebar-->
+
+        <main id="main" class="main" style="margin-top: 70px;">
+
+            <div class="pagetitle">
+              <h1>Dashboard</h1>
+              <nav>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="/admin/">Home</a></li>
+                  <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+              </nav>
+            </div><!-- End Page Title -->
+            
+            <section class="section mt-5">
+                {% block content %}
+              <div class="row justify-content-around">
+                    <!-- Trader info -->
+                    <div class="col-9">
+                      <div class="card top-selling overflow-auto">
+                        <div class="card-body pb-0">
+                          <h5 class="card-title">Trader's Information</h5>
+        
+                          <table class="table table-borderless">
+                            <thead>
+                              <tr>
+                                <th scope="col">S/N</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Initial Capital</th>
+                                <th scope="col">current profit/loss</th>
+                                <th scope="col">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                {% for deets in details%}
+                                    <tr>
+                                        <th>{{ loop.index}}</th>
+                                        <td>{{ deets.name }}</td>
+                                        <td>$ 100</td>
+                                        <td>$ {{ deets.profit}}</td>
+                                        <td><a href="{{url_for('trader_info', name=deets.name)}}" class="text-primary fw-bold">Details</a></td>
+                                    </tr>
+                                {% endfor %}
+                              
+                            </tbody>
+                          </table>
+        
+                        </div>
+        
+                      </div>
+                    </div><!-- End Trader info -->
+    
+              </div>
+              {% endblock %}
+            </section>
+            
+            
+          </main><!-- End #main -->
+
+
+    </div>
+
+
+    <script src="{{url_for('static',filename='bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{url_for('static',filename='jquery.min.js')}}"> </script>
+    <script>
+       $(document).ready(function(){
+            $('.sidebar-btn').click(function(){
+            $('body').toggleClass('toggle-sidebar')
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trader - Home</title>
+    <link href="{{url_for('static',filename='bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+      <!--  CSS File -->
+  <link href="{{url_for('static',filename='style.css')}}" rel="stylesheet">
+  <!-- sweetalert js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.12.5/dist/sweetalert2.all.min.js"></script>
+</head>
+<body>
+    <div class="container centered-form">
+        <form method="post" action="{{url_for('trader')}}">
+        <div class="row p-5 shadow-lg mb-5 bg-body rounded justify-content-center">
+           <div class="col-md-5">
+            <label class="form-label">Enter Traders name:</label>
+           </div>
+            <div class="col-md-7 form-floating">
+                <input type="search" class="form-control" id="trader_name" name="trader_name" placeholder="Trader 1">
+                <label for="trader_name">Trader 1</label>
+            </div>
+            <button class="btn btn-outline-primary col-2 mt-4 mx-auto">Submit</button>
+        </div>
+        </form>
+    </div>
+    {% with m= get_flashed_messages(with_categories = True) %}
+                {% if m %}
+                  {% for cat, msg in m%}
+                    <script>
+                      Swal.fire({
+                        title: "{{ cat.title() }}!",
+                        text: "{{ msg }}",
+                        icon: "{{ cat }}",
+                        closeOnConfirm: false
+                      })
+                    </script>
+                  {% endfor %}
+                {% endif%}
+              {% endwith%}
+    <script src="{{url_for('static',filename='bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+</body>
+</html>

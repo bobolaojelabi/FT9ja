@@ -1,0 +1,39 @@
+{% extends 'admin.html'%}
+{% block content %}
+
+<div class="row justify-content-center p-4">
+    <div class="col-md-7 p-5 shadow-lg mb-5 bg-body rounded">
+        <div class="table-responsive mb-4">
+            <table class="table">
+                <thead>
+                    <tr class="table-dark">
+                        <th colspan="21" class="mx-auto">{{ name }} Cumulative Profit/Loss over 20minute</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Time(minute)</th>
+                        {% for data in profit_data%}
+                        <td>{{loop.index}}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <th>Profit/Loss($)</th>
+                        {% for data in profit_data%}
+                        <td>{{data}}</td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+        <img src="{{url_for('static', filename='graph/' + name +'.png')}}" class="img-fluid zoom-img" alt="trade">
+
+        <a href="{{url_for('admin')}}" class="btn btn-outline-primary mt-4">Back</a>
+    </div>
+    
+</div>
+
+{% endblock %}
